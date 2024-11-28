@@ -15,12 +15,12 @@ namespace homework5
 
             Console.WriteLine("Press something...");
             Console.ReadKey();
-
         }
         static void Task1()
         {
             
         }
+
         static void Task2()
         {
             Dictionary<string, object[]> students = new Dictionary<string, object[]>();
@@ -80,6 +80,7 @@ namespace homework5
             }
             while (flag);
         }
+
         static int EnterPosNumber()
         {
             bool flag = true;
@@ -104,6 +105,7 @@ namespace homework5
 
             return number;
         }
+
         static int EnterBirthYear()
         {
             bool flag = true;
@@ -130,6 +132,7 @@ namespace homework5
 
             return number;
         }
+
         static object[] NewStudent()
         {
             Console.WriteLine("Введите имя");
@@ -146,6 +149,7 @@ namespace homework5
             object[] ret = new object[] { firstName, lastName, birthYear, exam, scores };
             return ret;
         }
+
         static void DelStudent(Dictionary<string, object[]> dict)
         {
             Console.WriteLine("Введите имя");

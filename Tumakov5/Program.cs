@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 
 
 namespace Tumakov5
@@ -49,6 +48,11 @@ namespace Tumakov5
             return number;
         }
 
+        /// <summary>
+        /// Считывает положительное число с консоли - размер одного из измерений матрицы.
+        /// Ждет число ло победного
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static int EnterMatrixSize()
         {
             bool flag = true;
@@ -77,6 +81,11 @@ namespace Tumakov5
             return number;
         }
 
+        /// <summary>
+        /// Упражнение 6.1. В аргументы Main/консоль передаются названия файлов из папки resourses.
+        /// Метод возвращает количество гласных и согласных в файле
+        /// </summary>
+        /// <returns>-</returns>
         static void Task1(string[] args1)
         {
             Console.WriteLine("Упражнение 6.1");
@@ -103,6 +112,11 @@ namespace Tumakov5
             }
         }
 
+        /// <summary>
+        /// Упражнение 6.2. Метод находит произведение двух матриц, вводимых с консоли
+        /// Пользователь вводит размеры матриц и их содержимое
+        /// </summary>
+        /// <returns>-</returns>
         static void Task2()
         {
             Console.WriteLine("\nУпражнение 6.2");
@@ -144,6 +158,10 @@ namespace Tumakov5
             PrintMatrix(MulMatrixs(firstMatrix, secondMatrix));
         }
 
+        /// <summary>
+        /// К Task2. Метод перемножает матрицы
+        /// </summary>
+        /// <returns>Матрица int[,]</returns>
         static int[,] MulMatrixs(int[,] fMatrix, int[,] sMatrix)
         {
             int n = fMatrix.GetLength(0);
@@ -169,6 +187,10 @@ namespace Tumakov5
             return answer;
         }
 
+        /// <summary>
+        /// К Task2. Метод печатает матрицу
+        /// </summary>
+        /// <returns>-</returns>
         static void PrintMatrix(int[,] matrix)
         {
             Console.WriteLine("Матрица:");
@@ -182,6 +204,11 @@ namespace Tumakov5
             }
         }
 
+        /// <summary>
+        /// Упражнение 6.3. Генерируется двумерный массив температур по месяцам и считается среднее значение по каждому месяцу
+        /// Вывод - отсортированный по возрастанию массив средних температур
+        /// </summary>
+        /// <returns>-</returns>
         static void Task3()
         {
             Console.WriteLine("\nУпражнение 6.3");
@@ -211,6 +238,11 @@ namespace Tumakov5
             }
         }
 
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static double[] GetMeanTemp(int[,] arr)
         {
             double[] meanTemp = new double[12];
@@ -228,6 +260,11 @@ namespace Tumakov5
             return meanTemp;
         }
 
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static void Task4(string[] args4)
         {
             Console.WriteLine("\nДомашнее задание 6.1");
@@ -252,6 +289,11 @@ namespace Tumakov5
             }
         }
 
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static void CountLettaz(char[] letters)
         {
             long vowelsCount = 0;
@@ -270,6 +312,12 @@ namespace Tumakov5
             
             Console.WriteLine($"Количество гласных = {vowelsCount}, согласных = {consonantsCount}\n");
         }
+
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static void CountLettaz(List<char> letters)
         {
             long vowelsCount = 0;
@@ -289,6 +337,11 @@ namespace Tumakov5
             Console.WriteLine($"Количество гласных = {vowelsCount}, согласных = {consonantsCount}");
         }
 
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static string OpenAndReadF(string filePath)
         {
             try
@@ -310,6 +363,11 @@ namespace Tumakov5
             return null;
         }
 
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static void Task5() ///Дописать!!!!!!!!!!!
         {
             Console.WriteLine("\nДомашнее задание 6.2");
@@ -349,6 +407,11 @@ namespace Tumakov5
             Console.WriteLine(secondMatrix);
         }
 
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static void Task6()
         {
             Console.WriteLine("\nДомашнее задание 6.3");
