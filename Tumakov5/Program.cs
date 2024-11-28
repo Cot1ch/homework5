@@ -89,10 +89,12 @@ namespace Tumakov5
         static void Task1(string[] args1)
         {
             Console.WriteLine("Упражнение 6.1");
-            if (args1 == null)
+            Console.WriteLine(args1[0]);
+            if (args1.Length == 0)
             {
                 Console.WriteLine("Введите названия файлов через запятую БЕЗ ПРОБЕЛОВ");
                 args1 = Console.ReadLine().Split(',');
+                
             }
             foreach (string arg in args1)
             {
@@ -103,9 +105,7 @@ namespace Tumakov5
                 {
                     path += paths[i] + "/";
                 }
-
-                
-                char[] text = OpenAndReadF($"{path}/resourses/{arg}").ToCharArray();
+                char[] text = OpenAndReadF($"{path}resourses/{arg}").ToCharArray();
                 Console.WriteLine($"Файл {arg}:");
                 
                 CountLettaz(text);
@@ -299,11 +299,12 @@ namespace Tumakov5
             long consonantsCount = 0;
             foreach (char letter in letters)
             {
-                if ("eyuioaуеыаоёяию".Contains(letter))
+                Console.Write(letter);
+                if ("eyuioaуеыаоёяию".Contains(char.ToLower(letter)))
                 {
                     vowelsCount++;
                 }
-                else if ("йцкнгшщзхфвпрлджчсмтъьбqwrtpsdfghjklzxcvbnm".Contains(letter))
+                else if ("йцкнгшщзхфвпрлджчсмтъьбqwrtpsdfghjklzxcvbnm".Contains(char.ToLower(letter)))
                 {
                     consonantsCount++;
                 }
@@ -323,6 +324,7 @@ namespace Tumakov5
             long consonantsCount = 0;
             foreach (char letter in letters)
             {
+                Console.Write(letter);
                 if ("eyuioaуеыаоёяию".Contains(letter))
                 {
                     vowelsCount++;
