@@ -9,21 +9,34 @@ namespace homework5
     {
         static void Main()
         {
-            Task1();
-            Task2();
+            //Task1();
+            //Task2();
             Task3();
-            Task4();
+            //Task4();
 
             Console.WriteLine("Press something...");
             Console.ReadKey();
         }
+
+        /// <summary>
+        /// Упражнение 6.1. В аргументы Main/консоль передаются названия файлов из папки resourses.
+        /// Метод возвращает количество гласных и согласных в файле.
+        /// </summary>
+        /// <returns>-</returns>
         static void Task1()
         {
-            
+            Console.WriteLine("Задание 1\n");
         }
 
+        /// <summary>
+        /// Упражнение 6.1. В аргументы Main/консоль передаются названия файлов из папки resourses.
+        /// Метод возвращает количество гласных и согласных в файле.
+        /// </summary>
+        /// <returns>-</returns>
         static void Task2()
         {
+            Console.WriteLine("Задание 2\n");
+
             string[] paths = Directory.GetCurrentDirectory().Split('\\');
             string path = String.Empty;
 
@@ -55,13 +68,13 @@ namespace homework5
                 Console.WriteLine("Ввести нового студента - 'новый студент' (без кавычек)");
                 Console.WriteLine("Удалить студента - 'удалить' (без кавычек)");
                 Console.WriteLine("Сортироавть список студентов - 'сортировать' (без кавычек)");
-                Console.WriteLine("Выйти - 'выход' (без кавычек)");
+                Console.WriteLine("Выйти - 'выход' (без кавычек)\n");
 
                 string input = Console.ReadLine();
                 switch (input)
                 {
                     case "выход":
-                        flag = false; 
+                        flag = false;
                         break;
                     case "новый студент":
                         NewStudent(students);
@@ -172,14 +185,134 @@ namespace homework5
             }
         }
 
+        /// <summary>
+        /// Оно как я. Не работает :(
+        /// 
+        /// </summary>
+        /// <returns>-</returns>
         static void Task3()
         {
-                        
+            Console.WriteLine("Задание 3\n");
+
+            Queue<Grandma> grandmas = new Queue<Grandma>();
+            Stack<Hospital> hospitals = new Stack<Hospital>();
+
+            hospitals.Push(new Hospital()
+            {
+                name = "Городская поликлиника",
+                capacity = 5,
+                deseases = new List<string> { "грипп", "простуда", "астма", "склероз" }
+            });
+            hospitals.Push(new Hospital()
+            {
+                name = "Негородская поликлиника",
+                capacity = 2,
+                deseases = new List<string> { "кашель", "простуда", "обморожение" }
+            });
+            hospitals.Push(new Hospital()
+            {
+                name = "Максимально странная поликлиника",
+                capacity = 3,
+                deseases = new List<string> { "забыл, как называется", "склероз", "ещё что-то" }
+            });
+
+            //Ввод бабушек 
+            bool flag = true;
+            do
+            {
+                Console.WriteLine("Введите имя бабушки [либо 'выход' для выхода (логично)]");
+                string input = Console.ReadLine();
+                if (input.ToLower() == "выход")
+                {
+                    flag = false;
+                }
+                else
+                {
+                    Console.WriteLine("Введите возраст бабушки");
+                    int ageInt = EnterPosNumber();
+
+                    Console.WriteLine("Введите болезни бабушки. Если их несколько, используйте запятую как разделитель");
+                    string[] desStr = Console.ReadLine().Split(',');
+
+                    Console.WriteLine("Введите лекарства бабушки. Если их несколько, используйте запятую как разделитель");
+                    string[] medStr = Console.ReadLine().Split(',');
+
+                    Grandma newGrandma = new Grandma()
+                    {
+                        name = input,
+                        age = ageInt,
+                        deseases = desStr.ToList(),
+                        medicines = medStr.ToList()
+                    };
+
+                    grandmas.Enqueue(newGrandma);
+                }
+            }
+            while (flag);
+
+
+            int countCryGrandmas = 0;
+            Grandma grandma = new Grandma();
+            do
+            {
+                grandma = grandmas.Dequeue();
+
+                if (!String.IsNullOrEmpty(grandma.deseases[0]))
+                {
+                    Console.WriteLine(grandma.deseases);
+
+                    foreach (var hospital in hospitals)
+                    {
+                        int des = hospital.deseases.Count(desease => grandma.deseases.Contains(desease));
+                        Console.WriteLine(des);
+
+                        if ((double)des > 0.5)
+                        {
+                            Console.WriteLine($"Бабушкино лечение продолжится в {hospital.name}");
+                            flag = false;
+                            grandma.status = $"{hospital.name}";
+                            break;
+                        }
+                    }
+                    if (flag)
+                    {
+                        Console.WriteLine("Бабушка отправляется плакать((");
+                        countCryGrandmas++;
+                    }
+
+                }
+                else
+                {
+                    while (hospitals.Count > 0)
+                    {
+                        Hospital hosp = hospitals.Pop();
+                        if (hosp.waitList < hosp.capacity)
+                        {
+                            hosp.waitList++;
+                            break;
+                        }
+                    }
+                }
+
+            }
+            while (grandmas.Count > 0);
+
+            Console.WriteLine(hospitals.Count);
+            while (hospitals.Count > 0)
+            {
+                Hospital hosp = hospitals.Pop();
+                Console.WriteLine($"{hosp.name} {hosp.waitList}");
+            }
         }
-        
+
+        /// <summary>
+        /// Упражнение 6.1. В аргументы Main/консоль передаются названия файлов из папки resourses.
+        /// Метод возвращает количество гласных и согласных в файле.
+        /// </summary>
+        /// <returns>-</returns>
         static void Task4()
         {
-
+            Console.WriteLine("Задание 4\n");
         }
     }
     struct Student
@@ -198,5 +331,21 @@ namespace homework5
             Console.WriteLine($"Итоговые баллы - {score}\n");
         }
     }
+    struct Grandma
+    {
+        public string name;
+        public int age;
+        public List<string> deseases;
+        public List<string> medicines;
+        public string status;
+    }
+    struct Hospital
+    {
+        public string name;
+        public List<string> deseases;
+        public int capacity;
+        public int waitList;
 
+    }
 }
+
