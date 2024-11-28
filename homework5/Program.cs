@@ -20,8 +20,8 @@ namespace homework5
         }
 
         /// <summary>
-        /// Упражнение 6.1. В аргументы Main/консоль передаются названия файлов из папки resourses.
-        /// Метод возвращает количество гласных и согласных в файле.
+        /// Задание 1. 32 фотки по паре в List. И перемешать.
+        /// :(
         /// </summary>
         /// <returns>-</returns>
         static void Task1()
@@ -30,8 +30,10 @@ namespace homework5
         }
 
         /// <summary>
-        /// Упражнение 6.1. В аргументы Main/консоль передаются названия файлов из папки resourses.
-        /// Метод возвращает количество гласных и согласных в файле.
+        /// Задание 2. Создать словарь из 10 студентов (имя, фамилия, ггод рождения, экзамен, баллы). Считать данные с файла.
+        /// Метод добавления студента.
+        /// Метод сортировки по баллам.
+        /// Метод удаления студента по фамилии.
         /// </summary>
         /// <returns>-</returns>
         static void Task2()
@@ -92,98 +94,6 @@ namespace homework5
                 }
             }
             while (flag);
-        }
-
-        static int EnterPosNumber()
-        {
-            bool flag = true;
-            int number;
-            do
-            {
-                bool isNumber = int.TryParse(Console.ReadLine(), out number);
-                if (isNumber)
-                {
-                    flag = false;
-                }
-                else if (number <= 0)
-                {
-                    Console.WriteLine("Ну это прям хорошо меня вынесло. Но нет");
-                }
-                else
-                {
-                    Console.WriteLine("Неверный ввод - необходимо ввести целое число");
-                }
-            }
-            while (flag);
-
-            return number;
-        }
-
-        static int EnterBirthYear()
-        {
-            bool flag = true;
-            int number;
-            do
-            {
-                Console.WriteLine("Введите год рождения:");
-                bool isNumber = int.TryParse(Console.ReadLine(), out number);
-                if (isNumber)
-                {
-                    flag = false;
-                }
-                else if (number <= 0)
-                {
-                    Console.WriteLine("Ну ок");
-                    flag = false;
-                }
-                else
-                {
-                    Console.WriteLine("Неверный ввод - необходимо ввести целое число");
-                }
-            }
-            while (flag);
-
-            return number;
-        }
-
-        static void NewStudent(Dictionary<string, Student> studs)
-        {
-            Console.WriteLine("Введите имя");
-            string firstName = Console.ReadLine();
-            Console.WriteLine("Введите фамилию");
-            string lastName = Console.ReadLine();
-
-            int birthYear = EnterBirthYear();
-            Console.WriteLine("Введите экзамен");
-            string exam = Console.ReadLine();
-            Console.WriteLine("Введите итоговую сумму баллов");
-            int scores = EnterPosNumber();
-
-            Student student = new Student();
-            student.firstName = firstName;
-            student.lastName = lastName;
-            student.birthYear = birthYear;
-            student.exam = exam;
-            student.score = scores;
-
-            studs[student.lastName] = student;
-        }
-
-        static void DelStudent(Dictionary<string, Student> studs)
-        {
-            Console.WriteLine("Введите фамилию");
-            string lastName = Console.ReadLine();
-            studs.Remove(lastName);
-
-            Console.WriteLine($"Удаление прошло благополучно");
-        }
-
-        static void SortStud(Dictionary<string, Student> studs)
-        {
-            foreach (var stud in studs.OrderBy(stud => stud.Value.score))
-            {
-                stud.Value.Print();
-            }
         }
 
         /// <summary>
@@ -317,7 +227,124 @@ namespace homework5
             Console.WriteLine("Задание 4\n");
             Console.WriteLine("¯\\(°_o)/¯");
         }
+
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому положительному числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
+        static int EnterPosNumber()
+        {
+            bool flag = true;
+            int number;
+            do
+            {
+                bool isNumber = int.TryParse(Console.ReadLine(), out number);
+                if (isNumber)
+                {
+                    flag = false;
+                }
+                else if (number <= 0)
+                {
+                    Console.WriteLine("Ну это прям хорошо меня вынесло. Но нет");
+                }
+                else
+                {
+                    Console.WriteLine("Неверный ввод - необходимо ввести целое число");
+                }
+            }
+            while (flag);
+
+            return number;
+        }
+
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к целому числу - году рождения. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
+        static int EnterBirthYear()
+        {
+            bool flag = true;
+            int number;
+            do
+            {
+                Console.WriteLine("Введите год рождения:");
+                bool isNumber = int.TryParse(Console.ReadLine(), out number);
+                if (isNumber)
+                {
+                    flag = false;
+                }
+                else if (number <= 0)
+                {
+                    Console.WriteLine("Ну ок");
+                    flag = false;
+                }
+                else
+                {
+                    Console.WriteLine("Неверный ввод - необходимо ввести целое число");
+                }
+            }
+            while (flag);
+
+            return number;
+        }
+
+        /// <summary>
+        /// Метод добавляет студента в переданный словарь
+        /// </summary>
+        /// <returns>-</returns>
+        static void NewStudent(Dictionary<string, Student> studs)
+        {
+            Console.WriteLine("Введите имя");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Введите фамилию");
+            string lastName = Console.ReadLine();
+
+            int birthYear = EnterBirthYear();
+            Console.WriteLine("Введите экзамен");
+            string exam = Console.ReadLine();
+            Console.WriteLine("Введите итоговую сумму баллов");
+            int scores = EnterPosNumber();
+
+            Student student = new Student();
+            student.firstName = firstName;
+            student.lastName = lastName;
+            student.birthYear = birthYear;
+            student.exam = exam;
+            student.score = scores;
+
+            studs[student.lastName] = student;
+        }
+
+        /// <summary>
+        /// Метод удаляет студента из переданного словаря
+        /// </summary>
+        /// <returns>-</returns>
+        static void DelStudent(Dictionary<string, Student> studs)
+        {
+            Console.WriteLine("Введите фамилию");
+            string lastName = Console.ReadLine();
+            studs.Remove(lastName);
+
+            Console.WriteLine($"Удаление прошло благополучно");
+        }
+
+        /// <summary>
+        /// Метод сортирует по баллам и выводит студентов из переданного словаря
+        /// </summary>
+        /// <returns>-</returns>
+        static void SortStud(Dictionary<string, Student> studs)
+        {
+            foreach (var stud in studs.OrderBy(stud => stud.Value.score))
+            {
+                stud.Value.Print();
+            }
+        }
+
     }
+
+
     struct Student
     {
         public string lastName;
